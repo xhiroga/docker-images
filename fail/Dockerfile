@@ -1,10 +1,6 @@
 # docker build -t hiroga/fail .
 # docker run --rm -it hiroga/fail
 # docker push hiroga/fail
-FROM node:12.18.1
+FROM bash:5.1.4
 
-WORKDIR /app
-
-COPY . .
-
-CMD [ "node", "fail.js" ]
+CMD [ "bash", "-c", "sleep 3; exit 1" ]
