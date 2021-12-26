@@ -1,5 +1,10 @@
-DEFAULTS_PLIST = defaults-plist
+DEFAULTS_PLUTIL = defaults-plutil
+DQL = dql
 
-.PHONY: $(DEFAULTS_PLIST)
-$(DEFAULTS_PLIST):
-	docker build ./$(DEFAULTS_PLIST) -t ghcr.io/xhiroga/$(DEFAULTS_PLIST):`git rev-parse HEAD` -t ghcr.io/xhiroga/$(DEFAULTS_PLIST):latest
+.PHONY: $(DEFAULTS_PLUTIL) $(DQL);
+
+$(DEFAULTS_PLUTIL):
+	docker build ./$(DEFAULTS_PLUTIL) -t ghcr.io/xhiroga/$(DEFAULTS_PLUTIL):`git rev-parse HEAD` -t ghcr.io/xhiroga/$(DEFAULTS_PLUTIL):latest
+
+$(DQL):
+	docker build ./$(DQL) -t ghcr.io/xhiroga/$(DQL):`git rev-parse HEAD` -t ghcr.io/xhiroga/$(DQL):latest
