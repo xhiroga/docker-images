@@ -19,4 +19,5 @@ COPY --from=builder /usr/bin/PlistBuddy /usr/bin/
 # Issue - [liblinenoise\.so was built but not installed\. · Issue \#6 · screenplaydev/plutil](https://github.com/screenplaydev/plutil/issues/6)
 COPY --from=builder /usr/src/plutil/build/liblinenoise.so /usr/lib/
 RUN apt install gnustep-base-runtime -y
+ENV GNUSTEP_USER_ROOT=/root/GNUstep
 WORKDIR /root
