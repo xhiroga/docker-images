@@ -1,18 +1,18 @@
 ANSIBLE = ghcr.io/xhiroga/ansible
-DEFAULTS_PLUTIL = defaults-plutil
-DQL = dql
-MANPAGES_JA = manpages-ja
+DEFAULTS_PLUTIL = ghcr.io/xhiroga/defaults-plutil
+DQL = ghcr.io/xhiroga/dql
+MANPAGES_JA = ghcr.io/xhiroga/manpages-ja
 
 .PHONY: $(ANSIBLE) $(DEFAULTS_PLUTIL) $(DQL) $(MANPAGES_JA);
 
 $(ANSIBLE):
-	docker build ./ansible -t $@:`git rev-parse HEAD` -t $@:latest
+	docker build ./ansible -t $@:$$(git rev-parse HEAD) -t $@:latest
 
 $(DEFAULTS_PLUTIL):
-	docker build ./$(DEFAULTS_PLUTIL) -t ghcr.io/xhiroga/$(DEFAULTS_PLUTIL):`git rev-parse HEAD` -t ghcr.io/xhiroga/$(DEFAULTS_PLUTIL):latest
+	docker build ./defaults-plutil -t $@:$$(git rev-parse HEAD) -t $@:latest
 
 $(DQL):
-	docker build ./$(DQL) -t ghcr.io/xhiroga/$(DQL):`git rev-parse HEAD` -t ghcr.io/xhiroga/$(DQL):latest
+	docker build ./dql -t $@:$$(git rev-parse HEAD) -t $@:latest
 
 $(MANPAGES_JA):
-	docker build ./$(MANPAGES_JA) -t ghcr.io/xhiroga/$(MANPAGES_JA):`git rev-parse HEAD` -t ghcr.io/xhiroga/$(MANPAGES_JA):latest
+	docker build ./manpages-ja -t $@:$$(git rev-parse HEAD) -t $@:latest
