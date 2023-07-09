@@ -4,7 +4,7 @@ set -euxo pipefail
 IMAGE_NAME=ghcr.io/xhiroga/${TARGET}
 COMMIT_HASH=$(git rev-parse HEAD)
 
-docker build ./${TARGET} -t ${IMAGE_NAME}:${COMMIT_HASH} -t ${IMAGE_NAME}:latest
+docker buildx build --platform linux/amd64 ./${TARGET} -t ${IMAGE_NAME}:${COMMIT_HASH} -t ${IMAGE_NAME}:latest
 export $(cat .env) && docker login ghcr.io -u xhiroga -p ${GITHUB_PERSONAL_ACCESS_TOKEN}
 docker push ${IMAGE_NAME}:${COMMIT_HASH}
 docker push ${IMAGE_NAME}:latest
