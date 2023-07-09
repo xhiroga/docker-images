@@ -1,25 +1,18 @@
-ANSIBLE = ghcr.io/xhiroga/ansible
-DEFAULTS_PLUTIL = ghcr.io/xhiroga/defaults-plutil
-DQL = ghcr.io/xhiroga/dql
-MANPAGES_JA = ghcr.io/xhiroga/manpages-ja
-REVIEW2_5_SSH = ghcr.io/xhiroga/review2.5-ssh
+.PHONY: all
 
-.PHONY: $(ANSIBLE) $(DEFAULTS_PLUTIL) $(DQL) $(MANPAGES_JA);
+all: ghcr.io/xhiroga/ansible ghcr.io/xhiroga/defaults-plutil ghcr.io/xhiroga/dql ghcr.io/xhiroga/manpages-ja ghcr.io/xhiroga/review2.5-ssh
 
-$(ANSIBLE):
-	docker build ./ansible -t $@:$$(git rev-parse HEAD) -t $@:latest
+ghcr.io/xhiroga/ansible:
+	TARGET=ansible ./docker-build-push
 
-$(DEFAULTS_PLUTIL):
-	docker build ./defaults-plutil -t $@:$$(git rev-parse HEAD) -t $@:latest
+ghcr.io/xhiroga/defaults-plutil:
+	TARGET=defaults-plutil ./docker-build-push
 
-$(DQL):
-	docker build ./dql -t $@:$$(git rev-parse HEAD) -t $@:latest
+ghcr.io/xhiroga/dql:
+	TARGET=dql ./docker-build-push
 
-$(MANPAGES_JA):
-	docker build ./manpages-ja -t $@:$$(git rev-parse HEAD) -t $@:latest
+ghcr.io/xhiroga/manpages-ja:
+	TARGET=manpages-ja ./docker-build-push
 
-$(MANPAGES_JA):
-	docker build ./manpages-ja -t $@:$$(git rev-parse HEAD) -t $@:latest
-
-$(REVIEW2_5_SSH):
-	docker build ./review2.5-ssh -t $@:$$(git rev-parse HEAD) -t $@:latest
+ghcr.io/xhiroga/review2.5-ssh:
+	TARGET=review2.5-ssh ./docker-build-push
